@@ -9,7 +9,7 @@ const InfoBanner: React.FC<InfoBannerProps> = ({ message }) => {
 
   return (
     <div className={styles.infoBanner}>
-      <p>{message}</p>
+      <h2 className={styles.infoMessage}>{message}</h2>
     </div>
   );
 };
