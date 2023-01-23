@@ -1,10 +1,4 @@
-import {
-  act,
-  render,
-  renderHook,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { Provider } from "jotai";
 import { currentDeckAtom } from "../../../../atoms/currentDeck";
 import { mockCard } from "../../../../testing/mocks/mockCard";
