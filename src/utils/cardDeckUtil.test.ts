@@ -1,24 +1,24 @@
 import {
   makeDeck,
-  makeSuite,
+  makeSuit,
   putCardsBack,
   shuffleDeckTimes,
   takeNumberOfCardsAtRandom,
 } from "./cardDeckUtil";
 
-describe("makeSuite", () => {
+describe("makeSuit", () => {
   it("should return a deck with 13 cards", () => {
-    expect(makeSuite("hearts")).toHaveLength(13);
+    expect(makeSuit("hearts")).toHaveLength(13);
   });
 
-  it("should return a deck with the correct suite", () => {
-    expect(makeSuite("hearts")).toEqual(
-      expect.arrayContaining([expect.objectContaining({ suite: "hearts" })])
+  it("should return a deck with the correct suit", () => {
+    expect(makeSuit("hearts")).toEqual(
+      expect.arrayContaining([expect.objectContaining({ suit: "hearts" })])
     );
   });
 
   it("special cards should return the correct text", () => {
-    const hearts = makeSuite("hearts");
+    const hearts = makeSuit("hearts");
 
     expect(hearts[0].text).toBe("A");
     expect(hearts[10].text).toBe("J");
@@ -31,15 +31,15 @@ describe("makeDeck", () => {
   it("should create a deck of 52 cards", () => {
     expect(makeDeck()).toHaveLength(52);
   });
-  it("should have all the suites", () => {
+  it("should have all the suits", () => {
     const deck = makeDeck();
 
     expect(deck).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ suite: "hearts" }),
-        expect.objectContaining({ suite: "diamonds" }),
-        expect.objectContaining({ suite: "spades" }),
-        expect.objectContaining({ suite: "clubs" }),
+        expect.objectContaining({ suit: "hearts" }),
+        expect.objectContaining({ suit: "diamonds" }),
+        expect.objectContaining({ suit: "spades" }),
+        expect.objectContaining({ suit: "clubs" }),
       ])
     );
   });

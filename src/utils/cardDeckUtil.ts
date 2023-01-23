@@ -1,4 +1,4 @@
-import { Card, CardDeck, CardSuite, CardValue } from "../types/CardDeck";
+import { Card, CardDeck, CardSuit, CardValue } from "../types/CardDeck";
 
 const makeCardText = (value: CardValue): string => {
   switch (value) {
@@ -15,12 +15,12 @@ const makeCardText = (value: CardValue): string => {
   }
 };
 
-export const makeSuite = (suite: CardSuite): CardDeck =>
+export const makeSuit = (suit: CardSuit): CardDeck =>
   Array.from({ length: 13 }, (_, i) => {
     const cardValue = (i + 1) as CardValue;
     return {
       value: cardValue,
-      suite,
+      suit,
       text: makeCardText(cardValue),
     };
   });
@@ -30,8 +30,8 @@ export const makeSuite = (suite: CardSuite): CardDeck =>
  * @returns a deck of 52 cards
  */
 export const makeDeck = (): CardDeck => {
-  const suites: CardSuite[] = ["hearts", "diamonds", "spades", "clubs"];
-  return suites.flatMap(makeSuite);
+  const suits: CardSuit[] = ["hearts", "diamonds", "spades", "clubs"];
+  return suits.flatMap(makeSuit);
 };
 
 const shuffleDeck = (deck: CardDeck): CardDeck => {
