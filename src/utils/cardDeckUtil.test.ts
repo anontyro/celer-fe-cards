@@ -1,4 +1,10 @@
-import { makeDeck, makeSuite, shuffleDeckTimes } from "./cardDeckUtil";
+import {
+  makeDeck,
+  makeSuite,
+  putCardsBack,
+  shuffleDeckTimes,
+  takeNumberOfCardsAtRandom,
+} from "./cardDeckUtil";
 
 describe("makeSuite", () => {
   it("should return a deck with 13 cards", () => {
@@ -67,5 +73,50 @@ describe("shuffleDeck", () => {
 
     expect(shuffledDeck.deck).not.toEqual(deck);
     expect(shuffledDeck.times).toBe(100);
+  });
+});
+
+describe("takeNumberOfCardsAtRandom", () => {
+  it("should correctly remove a card from the deck", () => {
+    const deck = makeDeck();
+
+    const output = takeNumberOfCardsAtRandom(deck, 1);
+
+    expect(output.deck).toHaveLength(51);
+    expect(output.deck).not.toEqual(deck);
+    expect(output.cards).toHaveLength(1);
+    expect(output.deck.findIndex((c) => c === output.cards[0])).toBe(-1);
+  });
+
+  it("should always remove one card if negative number is passed in", () => {
+    const deck = makeDeck();
+
+    const output = takeNumberOfCardsAtRandom(deck, -1);
+
+    expect(output.deck).toHaveLength(51);
+    expect(output.cards).toHaveLength(1);
+  });
+
+  it("should only remove all the cards in the deck is higher number than deck size is given", () => {
+    const deck = makeDeck();
+
+    const output = takeNumberOfCardsAtRandom(deck, 53);
+
+    expect(output.deck).toHaveLength(0);
+    expect(output.cards).toHaveLength(52);
+  });
+});
+
+describe("putCardsBack", () => {
+  it("should put the cards back in the deck", () => {
+    const deck = makeDeck();
+    const { deck: deckWithCardsRemoved, cards } = takeNumberOfCardsAtRandom(
+      deck,
+      1
+    );
+
+    const output = putCardsBack(deckWithCardsRemoved, ...cards);
+
+    expect(output).toHaveLength(52);
   });
 });

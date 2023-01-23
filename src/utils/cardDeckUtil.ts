@@ -1,4 +1,4 @@
-import { CardDeck, CardSuite, CardValue } from "../types/CardDeck";
+import { Card, CardDeck, CardSuite, CardValue } from "../types/CardDeck";
 
 const makeCardText = (value: CardValue): string => {
   switch (value) {
@@ -73,4 +73,70 @@ export const shuffleDeckTimes = (
     deck: shuffledDeck,
     times: timesToShuffle,
   };
+};
+
+type TakeACard = {
+  deck: CardDeck;
+  card: Card;
+};
+
+const takeCardAtRandom = (deck: CardDeck): TakeACard => {
+  const randomIndex = Math.floor(Math.random() * deck.length);
+  const card = deck[randomIndex];
+  const newDeck = deck.filter((_, index) => index !== randomIndex);
+
+  return {
+    deck: newDeck,
+    card,
+  };
+};
+
+type TakeManyCards = {
+  deck: CardDeck;
+  cards: Card[];
+};
+
+/**
+ * function to take a number of cards at random from a deck between 1 and the length of the deck
+ * @param deck the CardDeck object
+ * @param numberOfCards number of cards to take, defaults to 1
+ * @returns
+ */
+export const takeNumberOfCardsAtRandom = (
+  deck: CardDeck,
+  numberOfCards: number = 1
+): TakeManyCards => {
+  let newDeck = deck;
+  let cards: Card[] = [];
+  let numberToTake = numberOfCards;
+
+  if (numberOfCards < 1) {
+    numberToTake = 1;
+  }
+  if (numberOfCards > deck.length) {
+    numberToTake = deck.length;
+  }
+
+  for (let i = 0; i < numberToTake; i++) {
+    const { deck: nextDeck, card } = takeCardAtRandom(newDeck);
+    newDeck = nextDeck;
+    cards = [...cards, card];
+  }
+  return {
+    deck: newDeck,
+    cards,
+  };
+};
+
+/**
+ * function to put a card back into a deck and shuffle it
+ * @param deck the CardDeck object
+ * @param cards Card objects to be put back into the deck
+ * @returns new shuffled deck
+ */
+export const putCardsBack = (deck: CardDeck, ...cards: Card[]): CardDeck => {
+  const newDeck = [...deck, ...cards];
+  const shuffledDeck = shuffleDeck(newDeck);
+
+  return shuffledDeck;
 };
