@@ -1,8 +1,14 @@
 .deckControls {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 0 0 1rem 0;
+
+  @media screen and (min-width: 768px) {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
 }
 
 .deckMainBtn {
@@ -15,11 +21,19 @@
   background-color: #f5f5f5;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
-  margin: 0 0.5rem;
+  margin: 5px 10px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  @media screen and (min-width: 768px) {
+    margin: 0 0.5rem;
+  }
   &:hover {
     background-color: #989bf0;
+    color: white;
+  }
+  &:disabled {
+    cursor: default;
+    background-color: #cccdef;
     color: white;
   }
 }

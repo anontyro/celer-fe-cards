@@ -17,6 +17,7 @@ const DeckControls: React.FC = () => {
   const [currentDeck, setCurrentDeck] = useAtom(currentDeckAtom);
   const [userDeck, setUserDeck] = useAtom(currentUserCardsAtom);
   const [_, setInfo] = useAtom(informationAtom);
+  const isDeckEmpty = currentDeck.length === 0;
 
   const resetDeck = () => {
     setCurrentDeck([]);
@@ -60,10 +61,18 @@ const DeckControls: React.FC = () => {
       <button className={styles.deckMainBtn} onClick={getDeck}>
         Get Deck
       </button>
-      <button className={styles.deckMainBtn} onClick={shuffleDeck}>
+      <button
+        className={styles.deckMainBtn}
+        disabled={isDeckEmpty}
+        onClick={shuffleDeck}
+      >
         Shuffle Deck
       </button>
-      <button className={styles.deckMainBtn} onClick={drawCard}>
+      <button
+        className={styles.deckMainBtn}
+        disabled={isDeckEmpty}
+        onClick={drawCard}
+      >
         Draw Card
       </button>
       <button className={styles.deckMainBtn} onClick={putCardBack}>
