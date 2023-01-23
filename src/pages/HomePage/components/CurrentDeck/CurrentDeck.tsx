@@ -16,7 +16,7 @@ const CurrentDeck: React.FC = () => {
   }
 
   return (
-    <div className={styles.currentDeck}>
+    <div data-testid="current-deck" className={styles.currentDeck}>
       <div className={styles.currentDeckStack}>
         <DeckCardBack />
         <DeckCardBack />
