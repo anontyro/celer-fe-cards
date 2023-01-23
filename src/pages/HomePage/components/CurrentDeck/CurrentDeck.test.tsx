@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { atom, Provider, useAtom } from "jotai";
+import { render, screen } from "@testing-library/react";
+import { Provider } from "jotai";
 import { makeDeck } from "../../../../utils/cardDeckUtil";
 import CurrentDeck from "./CurrentDeck";
 import { currentDeckAtom } from "../../../../atoms/currentDeck";
