@@ -11,25 +11,37 @@ const SuitIcon: React.FC<SuitIconProps> = ({ suit }) => {
   switch (suit) {
     case "hearts":
       return (
-        <span className={classnames(style.suitDefault, style.heart)}>
+        <span
+          data-testid="deck-card-suit"
+          className={classnames(style.suitDefault, style.heart)}
+        >
           &hearts;
         </span>
       );
     case "diamonds":
       return (
-        <span className={classnames(style.suitDefault, style.diamond)}>
+        <span
+          data-testid="deck-card-suit"
+          className={classnames(style.suitDefault, style.diamond)}
+        >
           &diams;
         </span>
       );
     case "spades":
       return (
-        <span className={classnames(style.suitDefault, style.spade)}>
+        <span
+          data-testid="deck-card-suit"
+          className={classnames(style.suitDefault, style.spade)}
+        >
           &spades;
         </span>
       );
     case "clubs":
       return (
-        <span className={classnames(style.suitDefault, style.club)}>
+        <span
+          data-testid="deck-card-suit"
+          className={classnames(style.suitDefault, style.club)}
+        >
           &clubs;
         </span>
       );
@@ -47,7 +59,7 @@ type DeckCardProps = {
 const DeckCard: React.FC<DeckCardProps> = ({ card }) => {
   const suitStyle = isSuitRed(card.suit) ? style.redSuit : style.blackSuit;
   return (
-    <div className={style.cardContainer}>
+    <div data-testid="deck-card-container" className={style.cardContainer}>
       <div className={classnames(style.cardInnerContainer, suitStyle)}>
         <div>{card.text}</div>
         <div></div>
