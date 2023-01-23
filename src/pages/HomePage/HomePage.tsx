@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useAtom } from "jotai";
+import { informationAtom } from "../../atoms/informative";
+import InfoBanner from "../../components/Banners/InfoBanner";
+
 import styles from "./HomePage.module.scss";
-import { CardDeck } from "../../types/CardDeck";
+import UsersCards from "./components/UsersCards/UsersCards";
+import DeckControls from "./components/DeckControls/DeckControls";
+import CurrentDeck from "./components/CurrentDeck/CurrentDeck";
 
 const HomePage: React.FC = () => {
-  const [currentDeck, setCurrentDeck] = useState<CardDeck | null>(null);
+  const [info] = useAtom(informationAtom);
+
   return (
-    <div className="App">
-      <h1>test</h1>
+    <div className={styles.pageContainer}>
+      <header>
+        <InfoBanner message={info.message} />
+      </header>
+      <main>
+        <CurrentDeck />
+        <DeckControls />
+        <UsersCards />
+      </main>
     </div>
   );
 };
