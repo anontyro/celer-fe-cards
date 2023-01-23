@@ -1,4 +1,4 @@
-import { makeDeck, makeSuite } from "./cardDeckUtil";
+import { makeDeck, makeSuite, shuffleDeckTimes } from "./cardDeckUtil";
 
 describe("makeSuite", () => {
   it("should return a deck with 13 cards", () => {
@@ -36,5 +36,36 @@ describe("makeDeck", () => {
         expect.objectContaining({ suite: "clubs" }),
       ])
     );
+  });
+});
+
+describe("shuffleDeck", () => {
+  it("should shuffle the deck", () => {
+    const deck = makeDeck();
+    const shuffledDeck = shuffleDeckTimes(deck);
+
+    expect(shuffledDeck.deck).not.toEqual(deck);
+  });
+
+  it("should shuffle the deck if zero is passed in", () => {
+    const deck = makeDeck();
+    const shuffledDeck = shuffleDeckTimes(deck, 0);
+
+    expect(shuffledDeck.deck).not.toEqual(deck);
+    expect(shuffledDeck.times).toBe(1);
+  });
+  it("should shuffle the deck if a negative number is passed in", () => {
+    const deck = makeDeck();
+    const shuffledDeck = shuffleDeckTimes(deck, -1);
+
+    expect(shuffledDeck.deck).not.toEqual(deck);
+    expect(shuffledDeck.times).toBe(1);
+  });
+  it("should shuffle a maximum of 100 times", () => {
+    const deck = makeDeck();
+    const shuffledDeck = shuffleDeckTimes(deck, 101);
+
+    expect(shuffledDeck.deck).not.toEqual(deck);
+    expect(shuffledDeck.times).toBe(100);
   });
 });
