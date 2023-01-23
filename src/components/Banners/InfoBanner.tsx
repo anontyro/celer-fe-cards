@@ -6,7 +6,7 @@ type InfoBannerProps = {
 
 const InfoBanner: React.FC<InfoBannerProps> = ({ message }) => {
   return (
-    <div className={styles.infoBanner}>
+    <div data-testid="info-banner" className={styles.infoBanner}>
       {message && <h2 className={styles.infoMessage}>{message}</h2>}
     </div>
   );
