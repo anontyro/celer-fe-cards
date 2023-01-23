@@ -30,7 +30,7 @@ export const makeSuit = (suit: CardSuit): CardDeck =>
  * @returns a deck of 52 cards
  */
 export const makeDeck = (): CardDeck => {
-  const suits: CardSuit[] = ["hearts", "diamonds", "spades", "clubs"];
+  const suits: CardSuit[] = ["clubs", "diamonds", "hearts", "spades"];
   return suits.flatMap(makeSuit);
 };
 
@@ -139,4 +139,33 @@ export const putCardsBack = (deck: CardDeck, ...cards: Card[]): CardDeck => {
   const shuffledDeck = shuffleDeck(newDeck);
 
   return shuffledDeck;
+};
+
+/**
+ * function to sort a deck of cards by alphabetical order of suit and then by value
+ * @param deck the CardDeck object
+ * @returns new sorted deck
+ */
+export const sortDeck = (deck: CardDeck): CardDeck => {
+  const nextDeck = [...deck];
+  return nextDeck.sort((a, b) => {
+    if (a.suit === b.suit) {
+      return a.value - b.value;
+    }
+    return a.suit.localeCompare(b.suit);
+  });
+};
+
+/**
+ * function to take the top card from a deck
+ * @param deck the CardDeck object
+ * @returns TakeACard object with the top card and the new deck
+ */
+export const takeTopCard = (deck: CardDeck): TakeACard => {
+  const card = deck[0];
+  const newDeck = deck.filter((_, index) => index !== 0);
+  return {
+    deck: newDeck,
+    card,
+  };
 };

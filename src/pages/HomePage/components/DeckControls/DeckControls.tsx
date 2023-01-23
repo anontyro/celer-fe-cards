@@ -8,6 +8,7 @@ import {
   makeDeck,
   putCardsBack,
   shuffleDeckTimes,
+  sortDeck,
   takeNumberOfCardsAtRandom,
 } from "../../../../utils/cardDeckUtil";
 
@@ -26,6 +27,11 @@ const DeckControls: React.FC = () => {
 
   const getDeck = () => {
     setCurrentDeck(makeDeck());
+  };
+
+  const sortCurrentDeck = () => {
+    const sorted = sortDeck(currentDeck);
+    setCurrentDeck(sorted);
   };
 
   const shuffleDeck = () => {
@@ -60,6 +66,13 @@ const DeckControls: React.FC = () => {
       </button>
       <button className={styles.deckMainBtn} onClick={getDeck}>
         Get Deck
+      </button>
+      <button
+        disabled={isDeckEmpty}
+        className={styles.deckMainBtn}
+        onClick={sortCurrentDeck}
+      >
+        Sort Deck
       </button>
       <button
         className={styles.deckMainBtn}

@@ -1,11 +1,23 @@
 import { useAtom } from "jotai";
-import { currentDeckAtom } from "../../../../atoms/currentDeck";
+import {
+  currentDeckAtom,
+  currentUserCardsAtom,
+} from "../../../../atoms/currentDeck";
 import DeckCardBack from "../../../../components/DeckOfCards/components/DeckCardBack/DeckCardBack";
+import { takeTopCard } from "../../../../utils/cardDeckUtil";
 
 import styles from "./CurrentDeck.module.scss";
 
 const CurrentDeck: React.FC = () => {
-  const [currentDeck] = useAtom(currentDeckAtom);
+  const [currentDeck, setCurrentDeck] = useAtom(currentDeckAtom);
+  const [userDeck, setUserDeck] = useAtom(currentUserCardsAtom);
+
+  const takeCurrentTopCard = () => {
+    const takenValues = takeTopCard(currentDeck);
+
+    setUserDeck([...userDeck, takenValues.card]);
+    setCurrentDeck(takenValues.deck);
+  };
 
   if (currentDeck.length === 0) {
     return (
@@ -21,7 +33,7 @@ const CurrentDeck: React.FC = () => {
         <DeckCardBack />
         <DeckCardBack />
         <DeckCardBack />
-        <DeckCardBack />
+        <DeckCardBack onClick={takeCurrentTopCard} />
       </div>
       <p>{`Current deck has ${currentDeck.length} cards`}</p>
     </div>

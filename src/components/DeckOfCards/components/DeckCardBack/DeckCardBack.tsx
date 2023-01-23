@@ -1,8 +1,12 @@
 import style from "./DeckCardBack.module.scss";
 
-const DeckCardBack: React.FC = () => {
+type DeckCardBackProps = {
+  onClick?: () => void;
+};
+
+const DeckCardBack: React.FC<DeckCardBackProps> = ({ onClick = () => {} }) => {
   return (
-    <div className={style.cardBackContainer}>
+    <div onClick={onClick} className={style.cardBackContainer}>
       <div className={style.cardBackInnerContainer}></div>
     </div>
   );

@@ -3,7 +3,9 @@ import {
   makeSuit,
   putCardsBack,
   shuffleDeckTimes,
+  sortDeck,
   takeNumberOfCardsAtRandom,
+  takeTopCard,
 } from "./cardDeckUtil";
 
 describe("makeSuit", () => {
@@ -118,5 +120,27 @@ describe("putCardsBack", () => {
     const output = putCardsBack(deckWithCardsRemoved, ...cards);
 
     expect(output).toHaveLength(52);
+  });
+});
+
+describe("sortDeck", () => {
+  it("will correctly sort the deck after being shuffled", () => {
+    const deck = makeDeck();
+    const shuffledDeck = shuffleDeckTimes(deck, 10);
+
+    const sortedDeck = sortDeck(shuffledDeck.deck);
+
+    expect(sortedDeck).toEqual(deck);
+  });
+});
+
+describe("takeTopCard", () => {
+  it("should take the top card from the deck", () => {
+    const deck = makeDeck();
+    const output = takeTopCard(deck);
+
+    expect(output.deck).toHaveLength(51);
+    expect(output.deck).not.toEqual(deck);
+    expect(output.card).toEqual(deck[0]);
   });
 });
