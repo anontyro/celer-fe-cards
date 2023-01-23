@@ -54,11 +54,21 @@ const DeckControls: React.FC = () => {
 
   return (
     <div className={styles.deckControls}>
-      <button onClick={resetDeck}>Clear Deck</button>
-      <button onClick={getDeck}>Get Deck</button>
-      <button onClick={shuffleDeck}>Shuffle Deck</button>
-      <button onClick={drawCard}>Draw Card</button>
-      <button onClick={putCardBack}>Put Card Back</button>
+      <button className={styles.deckMainBtn} onClick={resetDeck}>
+        Clear Deck
+      </button>
+      <button className={styles.deckMainBtn} onClick={getDeck}>
+        Get Deck
+      </button>
+      <button className={styles.deckMainBtn} onClick={shuffleDeck}>
+        Shuffle Deck
+      </button>
+      <button className={styles.deckMainBtn} onClick={drawCard}>
+        Draw Card
+      </button>
+      <button className={styles.deckMainBtn} onClick={putCardBack}>
+        Put Card Back
+      </button>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const CurrentDeck: React.FC = () => {
 
   if (currentDeck.length === 0) {
     return (
-      <div className={styles.currentDeck}>
+      <div className={styles.currentDeckEmpty}>
         <p>no deck</p>
       </div>
     );

@@ -9,7 +9,9 @@ const UsersCards: React.FC = () => {
 
   return (
     <div className={styles.userCardContainer}>
-      <p>{`User has ${userDeck.length} cards`}</p>
+      <div className={styles.userCardInfo}>
+        <p>{`User has ${userDeck.length} cards`}</p>
+      </div>
       <div className={styles.userCardsDisplay}>
         {userDeck.map((card) => (
           <DeckCard key={`${card.suit}-${card.text}`} card={card} />
